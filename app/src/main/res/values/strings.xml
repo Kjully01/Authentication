@@ -7,4 +7,5 @@
     <string name="login">Login</string>
     <string name="other">or</string>
     <string name="button_login_google">botão de fazer login</string>
+    <string name="signUp">Cadastrar</string>
 </resources>

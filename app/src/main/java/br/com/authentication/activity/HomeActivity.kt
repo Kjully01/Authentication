@@ -1,9 +1,12 @@
 package br.com.authentication.activity
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import br.com.authentication.databinding.ActivityHomeBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
@@ -15,6 +18,15 @@ class HomeActivity : AppCompatActivity() {
 
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+
+        if(acct != null){
+            binding.apply {
+                name.text = acct.displayName
+                mail. text = acct.email
+            }
+        }
 
         listener()
     }
