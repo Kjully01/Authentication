@@ -8,4 +8,6 @@
     <string name="other">or</string>
     <string name="button_login_google">botão de fazer login</string>
     <string name="signUp">Cadastrar</string>
+    <string name="create_account">Crie uma conta</string>
+    <string name="title_registration">Crie sua conta</string>
 </resources>
