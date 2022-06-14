@@ -35,6 +35,7 @@
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:maxLines="1"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/etEmail"/>
 
     <androidx.appcompat.widget.AppCompatButton
