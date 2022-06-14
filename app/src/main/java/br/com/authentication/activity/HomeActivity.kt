@@ -2,7 +2,9 @@ package br.com.authentication.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import br.com.authentication.R
 import br.com.authentication.databinding.ActivityHomeBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
@@ -16,27 +18,45 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding =  ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val account = Firebase.auth.currentUser
+        setSupportActionBar(binding.toolbar)
 
-        if(account != null){
-            binding.apply {
-                name.text = account.displayName
-                mail. text = account.email
+        val actionBar = supportActionBar
+        actionBar?.title = ""
+
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.logOut -> {
+                    logOut()
+                    true
+                }
+                else -> false
             }
         }
 
-        listener()
+        val account = Firebase.auth.currentUser
+
+        if (account != null) {
+            binding.apply {
+                info.tvInfoName.text = account.displayName
+                info.tvInfoEmail.text = account.email
+                info.tvInfoTell.text = account.phoneNumber
+            }
+        }
+
     }
 
-    private fun listener(){
-        binding.btnLogOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this@HomeActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun logOut() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this@HomeActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

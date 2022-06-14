@@ -10,4 +10,7 @@
     <string name="signUp">Cadastrar</string>
     <string name="create_account">Crie uma conta</string>
     <string name="title_registration">Crie sua conta</string>
+    <string name="logOut">Sair</string>
+    <string name="name">Nome</string>
+    <string name="tell">Tel.</string>
 </resources>
